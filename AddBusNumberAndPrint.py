@@ -5,8 +5,6 @@ import shutil
 import subprocess
 import time
 
-file = docx.Document("01.docx")
-
 def printing(path):
     printer = subprocess.Popen(["powershell", "Start-Process", "-FilePath", path, "-verb", "print"])
     printer.wait()
@@ -32,7 +30,7 @@ def change_paragraphs(file,row):
 with open("number.csv", "r") as csvf:
     reader = csv.DictReader(csvf)
     for row in reader:
-        file = docx.Document('01.docx')
+        file = docx.Document('01-05.docx')
         # change word
         change_paragraphs(file,row)
         for table in file.tables:
@@ -45,12 +43,12 @@ with open("number.csv", "r") as csvf:
             os.mkdir(row['BodyNumber'])
         os.chdir(row['BodyNumber'])
         file.save('01-05_{}.docx'.format(row['BodyNumber']))
-        '''
+
         # copy files
         files = os.listdir("../../files")
         for f in files:
             shutil.copy("../../files/{}".format(f), os.getcwd())
-        '''
+
         # print files
         files = os.listdir(os.getcwd())
         rootPath = os.getcwd()
