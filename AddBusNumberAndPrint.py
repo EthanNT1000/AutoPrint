@@ -38,6 +38,8 @@ with open("number.csv", "r") as csvf:
                 change_paragraphs(cell,row)
 
         # save files
+        if not os.path.isdir("AutoPrintData"):
+            os.mkdir("AutoPrintData")
         os.chdir("AutoPrintData")
         if not os.path.isdir(row['BodyNumber']):
             os.mkdir(row['BodyNumber'])

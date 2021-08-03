@@ -7,6 +7,8 @@ def printing(path):
     #os.startfile(path,"print")
     #time.sleep(5)
 
+if not os.path.isdir("PrintData"):
+    os.mkdir("PrintData")
 os.chdir("PrintData")
 files = os.listdir(os.getcwd())
 rootPath = os.getcwd()
