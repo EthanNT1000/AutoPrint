@@ -30,22 +30,27 @@ def change_paragraphs(file,row):
 with open("number.csv", "r") as csvf:
     reader = csv.DictReader(csvf)
     for row in reader:
-        file = docx.Document('01-05.docx')
+        file = docx.Document('TLP.docx')
         # change word
         change_paragraphs(file,row)
         for table in file.tables:
-            for cell in table._cells:
-                change_paragraphs(cell,row)
-
+            try:
+                for cell in table._cells:
+                    change_paragraphs(cell,row)
+                    print("1")
+            except:
+                print("2")
+                continue
         # save files
         if not os.path.isdir("AutoPrintData"):
             os.mkdir("AutoPrintData")
         os.chdir("AutoPrintData")
-        if not os.path.isdir(row['BodyNumber']):
-            os.mkdir(row['BodyNumber'])
-        os.chdir(row['BodyNumber'])
-        file.save('01-05_{}.docx'.format(row['BodyNumber']))
-
+        #if not os.path.isdir(row['BodyNumber']):
+            #os.mkdir(row['BodyNumber'])
+        #os.chdir(row['BodyNumber'])
+        file.save('{}.docx'.format(row['BodyNumber']))
+        os.chdir("..")
+'''
         # copy files
         if os.path.isdir("files"):
             files = os.listdir("../../files")
@@ -59,5 +64,5 @@ with open("number.csv", "r") as csvf:
         for file in files:
             path = os.path.join(rootPath, file)
             printing(path)
-
+'''
 
