@@ -47,9 +47,10 @@ with open("number.csv", "r") as csvf:
         file.save('01-05_{}.docx'.format(row['BodyNumber']))
 
         # copy files
-        files = os.listdir("../../files")
-        for f in files:
-            shutil.copy("../../files/{}".format(f), os.getcwd())
+        if os.path.isdir("files"):
+            files = os.listdir("../../files")
+            for f in files:
+                shutil.copy("../../files/{}".format(f), os.getcwd())
 
         # print files
         files = os.listdir(os.getcwd())
