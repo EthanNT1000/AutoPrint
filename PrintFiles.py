@@ -1,11 +1,10 @@
 import os
 import subprocess
-
+import time
 def printing(path):
     printer = subprocess.Popen(["powershell", "Start-Process", "-FilePath", path, "-verb", "print"])
-    printer.wait()
+    time.sleep(5)
     #os.startfile(path,"print")
-    #time.sleep(5)
 
 if  os.path.isdir("PrintData"):
     os.chdir("PrintData")

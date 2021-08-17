@@ -9,7 +9,8 @@ def printing(path):
     printer = subprocess.Popen(["powershell", "Start-Process", "-FilePath", path, "-verb", "print"])
     printer.wait()
     #os.startfile(path,"print")
-    #time.sleep(5)
+    time.sleep(5)
+
 def change_paragraphs(file,row):
     for para in file.paragraphs:
         if "EngineNumber" in para.text:
@@ -47,7 +48,7 @@ with open("number.csv", "r") as csvf:
         file.save('01-05_{}.docx'.format(row['BodyNumber']))
 
         # copy files
-        if os.path.isdir("files"):
+        if os.path.isdir("../../files"):
             files = os.listdir("../../files")
             for f in files:
                 shutil.copy("../../files/{}".format(f), os.getcwd())
